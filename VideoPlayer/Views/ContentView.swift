@@ -17,7 +17,10 @@ struct ContentView: View {
                 HStack {
                     ForEach(Query.allCases, id: \.self) {
                         searchQuery in
-                        QueryTag(query: searchQuery, isSelected: false)
+                        QueryTag(query: searchQuery, isSelected: videoManager.selectedQuery == searchQuery)
+                            .onTapGesture {
+                                videoManager.selectedQuery = searchQuery
+                            }
                     }
                 }
                 ScrollView {
