@@ -29,10 +29,10 @@ class VideoManager: ObservableObject {
     
     func findVideos(topic: Query) async {
         do {
-            guard let url = URL(string: "APIKEYHERE=\(topic)&per_page=10&orientation=portrait") else { fatalError("Missing URL") }
+            guard let url = URL(string: "https://api.pexels.com/videos/search?query=\(topic)&per_page=10&orientation=portrait") else { fatalError("Missing URL") }
             
             var urlRequest = URLRequest(url: url)
-            urlRequest.setValue("BSPMOMX51C9QRhOfwJVpkCcHOpmG96GdhGhbUztViejp4xIR8g1qkg1S", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("APIKEYHERE", forHTTPHeaderField: "Authorization")
             
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             
